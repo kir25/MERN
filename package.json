@@ -4,12 +4,21 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node -r esm app.js ",
+    "server": "nodemon -r esm app.js "
   },
   "author": "kirill",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "config": "^3.3.0",
+    "esm": "^3.2.25",
     "express": "^4.17.1",
+    "express-validator": "^6.4.0",
     "mongoose": "^5.9.5"
+  },
+  "devDependencies": {
+    "concurrently": "^5.1.0",
+    "nodemon": "^2.0.2"
   }
 }
