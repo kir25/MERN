@@ -1,6 +1,8 @@
 import { Router } from "express";
 import User from "../models/User";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+import config from "config";
 import { check, validationResult } from "express-validator";
 const router = Router();
 
@@ -64,6 +66,11 @@ router.post(
       if (!isMatch) {
         return res.status(400).json({ message: "Try again" });
       }
+
+      const token = jwt.sign({ userId: user.id }, config, get("jwtSecret"), {
+        expiresIn: "1h"
+      });
+      res.json({ token, userId: user.id });
     } catch (e) {
       res.status(500), json({ message: "Something went wrong" });
     }

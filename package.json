@@ -5,7 +5,9 @@
   "main": "app.js",
   "scripts": {
     "start": "node -r esm app.js ",
-    "server": "nodemon -r esm app.js "
+    "server": "nodemon -r esm app.js ",
+    "client": "npm run start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "kirill",
   "license": "ISC",
@@ -15,6 +17,7 @@
     "esm": "^3.2.25",
     "express": "^4.17.1",
     "express-validator": "^6.4.0",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.5"
   },
   "devDependencies": {
