@@ -7,7 +7,7 @@ import { check, validationResult } from "express-validator";
 const router = Router();
 
 router.post(
-  "register",
+  "/register",
   [
     check("email", "Wrong email").isEmail(),
     check("password", "Min length should be 6 symbols").isLength({ min: 6 })
@@ -38,7 +38,7 @@ router.post(
 );
 
 router.post(
-  "login",
+  "/login",
   [
     check("email", "Write correct email")
       .normalizeEmail()
@@ -67,12 +67,13 @@ router.post(
         return res.status(400).json({ message: "Try again" });
       }
 
-      const token = jwt.sign({ userId: user.id }, config, get("jwtSecret"), {
+      const token = jwt.sign({ userId: user.id }, config.get("jwtSecret"), {
         expiresIn: "1h"
       });
+
       res.json({ token, userId: user.id });
     } catch (e) {
-      res.status(500), json({ message: "Something went wrong" });
+      res.status(500).json({ message: "Something went wrong" });
     }
   }
 );
