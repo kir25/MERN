@@ -10,7 +10,7 @@ router.post(
   "/register",
   [
     check("email", "Wrong email").isEmail(),
-    check("password", "Min length should be 6 symbols").isLength({ min: 6 })
+    check("password", "Min length should be 6 symbols").isLength({ min: 6 }),
   ],
   async (req, res) => {
     try {
@@ -18,7 +18,7 @@ router.post(
       if (!errors.isEmpty()) {
         return res.status(400).json({
           errors: errors.array(),
-          message: "Wrong data"
+          message: "Wrong data",
         });
       }
 
@@ -39,11 +39,7 @@ router.post(
 
 router.post(
   "/login",
-  [
-    check("email", "Write correct email")
-      .normalizeEmail()
-      .isEmail()
-  ],
+  [check("email", "Write correct email").normalizeEmail().isEmail()],
   [check("password", "Write correct password").exists()],
   async (req, res) => {
     try {
@@ -51,7 +47,7 @@ router.post(
       if (!errors.isEmpty()) {
         return res.status(400).json({
           errors: errors.array(),
-          message: "Wrong data"
+          message: "Wrong data",
         });
       }
 
@@ -68,7 +64,7 @@ router.post(
       }
 
       const token = jwt.sign({ userId: user.id }, config.get("jwtSecret"), {
-        expiresIn: "1h"
+        expiresIn: "1h",
       });
 
       res.json({ token, userId: user.id });
