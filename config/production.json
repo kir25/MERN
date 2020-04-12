@@ -1,0 +1,6 @@
+{
+  "port": 5000,
+  "mongoUri": "mongodb+srv://Kirill:25@cluster0-ksq8a.azure.mongodb.net/test?retryWrites=true&w=majority",
+  "jwtSecret": "Kirill",
+  "baseUrl": "http://localhost:5000"
+}
